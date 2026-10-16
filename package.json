@@ -1,0 +1,25 @@
+{
+  "name": "wikime",
+  "version": "1.0.0",
+  "description": "A non-linear map of the Wikipedia pages in my Are.na channel",
+  "scripts": {
+    "data": "node scripts/build.mjs",
+    "serve": "python3 -m http.server 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elliemadsen/wikime.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/elliemadsen/wikime/issues"
+  },
+  "homepage": "https://github.com/elliemadsen/wikime#readme",
+  "dependencies": {
+    "cheerio": "^1.2.0",
+    "d3-force": "^3.0.0",
+    "d3-force-3d": "^3.0.6"
+  }
+}

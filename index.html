@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wikime</title>
+    <meta
+      name="description"
+      content="A non-linear map of the Wikipedia pages I collect while researching."
+    />
+    <link rel="icon" type="image/png" href="public/favicon.png" />
+    <link rel="apple-touch-icon" href="public/favicon.png" />
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="./">
+        <span class="wordmark">Wikime</span>
+      </a>
+      <form class="search" role="search">
+        <input
+          id="search"
+          type="search"
+          list="titles"
+          placeholder="Search"
+          autocomplete="off"
+        />
+        <datalist id="titles"></datalist>
+      </form>
+      <nav class="tabs" aria-label="View">
+        <div class="tabgroup" data-group="view">
+          <button data-value="flat" aria-pressed="true">Flat</button>
+          <button data-value="sphere" aria-pressed="false">Sphere</button>
+        </div>
+        <div class="tabgroup" data-group="side" hidden>
+          <button
+            data-value="outside"
+            aria-pressed="true"
+            aria-label="View from outside"
+            title="View from outside"
+          >
+            <span class="view-icon"
+              ><span class="globe"></span><i class="eye"></i
+            ></span>
+          </button>
+          <button
+            data-value="inside"
+            aria-pressed="false"
+            aria-label="View from inside"
+            title="View from inside"
+          >
+            <span class="view-icon"
+              ><span class="globe"><i class="eye"></i></span
+            ></span>
+          </button>
+        </div>
+        <div class="tabgroup" data-group="mode">
+          <button data-value="text" aria-pressed="true">Text</button>
+          <button data-value="image" aria-pressed="false">Image</button>
+        </div>
+        <div class="tabgroup" data-group="tool">
+          <button data-tool="path" aria-pressed="false">Pathfinder</button>
+          <button data-tool="frontier" aria-pressed="false" hidden>
+            Frontier
+          </button>
+          <button id="timeline-toggle" aria-pressed="false">Timeline</button>
+          <button data-tool="about" aria-pressed="false">About</button>
+        </div>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <section class="tool" data-tool="path" hidden>
+          <h3>Pathfinder</h3>
+          <p class="hint" id="path-hint">Click two pages on the map.</p>
+          <ol class="chain" id="path-chain"></ol>
+          <button class="link-button" id="path-clear">Clear</button>
+        </section>
+
+        <section class="tool" data-tool="frontier" hidden>
+          <h3>Frontier</h3>
+          <p class="hint">
+            Pages I haven't saved that most strongly connect the ones I have.
+          </p>
+          <ol class="frontier" id="frontier"></ol>
+        </section>
+
+        <section class="tool" data-tool="about" hidden>
+          <h3>About</h3>
+          <p>
+            As I found myself increasingly wandering Wikipedia during various
+            processes of (loosely-defined) research, I began saving pages I
+            frequently visited or wished to bookmark in an
+            <a id="about-arena" href="#" target="_blank" rel="noopener"
+              >Are.na channel</a
+            >. I created this website to spatialize this archive of interests.
+            Pages are closer together when more Wikipedia links connect them.
+            The Pathfinder allows me to discover the most direct linked path
+            between concepts, while the Timeline replays the order in which I
+            saved them.
+          </p>
+          <p class="credit">
+            Made by
+            <a href="https://elliemadsen.net" target="_blank" rel="noopener"
+              >Ellie Madsen</a
+            >
+          </p>
+        </section>
+      </aside>
+
+      <main class="stage">
+        <canvas id="map" aria-label="Map of Wikipedia pages"></canvas>
+        <div class="card" id="card" hidden></div>
+        <div class="timeline" hidden>
+          <button id="play" aria-label="Replay the order pages were saved">
+            ▶
+          </button>
+          <input
+            id="time"
+            type="range"
+            min="1"
+            max="1"
+            value="1"
+            aria-label="Saved up to"
+          />
+          <span id="time-label" class="time-label"></span>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
